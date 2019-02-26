@@ -1,11 +1,11 @@
 package com.zhangdianyang.testElasticSearch.controller;
 
-import com.alibaba.fastjson.JSON;
+
+import com.alibaba.fastjson.JSONObject;
 import com.zhangdianyang.testElasticSearch.config.EsConfig;
 import com.zhangdianyang.testElasticSearch.entity.MyUser;
 import com.zhangdianyang.testElasticSearch.services.MyUserServiceInt;
 import org.elasticsearch.action.get.GetResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,6 +36,9 @@ public class TestController {
     @RequestMapping(value = "/es/find")
     public String find(Long id) throws UnknownHostException {
         GetResponse myuser = esConfig.client().prepareGet("xxl-job", "myuser", id.toString()).get();
-        return JSON.toJSONString(myuser.getSource());
+        return JSONObject.toJSONString(myuser.getSource());
     }
+
+
+
 }
